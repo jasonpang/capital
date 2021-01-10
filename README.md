@@ -1,38 +1,41 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
+## Capital
 
-## Usage
+A desktop Electron-based app for personal finances and budgeting.
 
-### Create an App
-
-```
-# with npm
-$ npm init nextron-app my-app --example with-typescript-material-ui
-
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript-material-ui
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript-material-ui
-```
+## Contributing
 
 ### Install Dependencies
 
 ```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
+$ cd capital
+$ yarn
 ```
 
-### Use it
+### Develop
 
 ```
 # development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
+$ yarn dev
 
 # production build
-$ yarn build (or `npm run build` or `pnpm run build`)
+$ yarn build
+```
+
+A `capital.conf` is created in your home directory (e.g. on Windows, that's C:\Users\YourUserName\capital.conf). You can populate it with settings and the app will auto-read and update based on your config in realtime.
+
+```
+{
+	titlebar: {
+		title: 'Capital',
+		background: '#fff',
+		boxShadow: "0 1px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24)",
+		transform: 'translateY(1px)',
+		height: "30px",
+		fontSize: '15px',
+		titleHorizontalAlignment: 'left'
+	},
+	sidebar: {
+		background: 'linear-gradient(#014CDB, #029BD8)',
+	},
+}
 ```
