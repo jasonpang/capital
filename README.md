@@ -1,6 +1,15 @@
 ## Capital
 
-A desktop Electron-based app for personal finances and budgeting.
+A desktop Electron-based app for personal finances and budgeting, for developers who like to tweak things.
+
+## Usage
+
+1. Obtain a Plaid account and access token.
+
+Plaid aggregates financial data (e.g. transactions) from different financial instutitions, and is what powers this app to provide your banking accounts' balances and transactions.
+
+- Sign up for an account on https://plaid.com. This step completes instantly.
+- In your Plaid dashboard, request access to the Development environment (100 account limit). This step requires a 1 day or so wait time.
 
 ## Contributing
 

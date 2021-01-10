@@ -33,6 +33,8 @@ export default function App(props: AppProps) {
       },
       ".window-title": {
         fontSize: `${appConfig?.titlebar?.fontSize} !important`,
+        fontWeight: `${appConfig?.titlebar?.fontWeight} !important`,
+        letterSpacing: `${appConfig?.titlebar?.letterSpacing} !important`,
         transform: `${appConfig?.titlebar?.transform} !important`,
       },
       ".window-controls-container": {
@@ -48,8 +50,9 @@ export default function App(props: AppProps) {
     await updateAppConfig();
   }
 
-  async function onAppConfigChanged() {
+  async function onAppConfigChanged(appConfig: AppConfig) {
     setupTitlebar();
+    (window as any).resourcePath = appConfig.resourcePath;
 
     if (isFirstRunRef.current) {
       isFirstRunRef.current = false;
@@ -78,7 +81,6 @@ export default function App(props: AppProps) {
   function setupTitlebar() {
     if (typeof window !== "undefined") {
       const { Titlebar, Color } = require("custom-electron-titlebar");
-      console.log("Setting up Title bar. Current app config:", appConfig);
       titlebarRef.current = new Titlebar({
         backgroundColor: Color.fromHex(appConfig.titlebar.background),
         shadow: false,
@@ -111,7 +113,7 @@ export default function App(props: AppProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined" && (appConfig as any)?._ready !== false) {
-      onAppConfigChanged();
+      onAppConfigChanged(appConfig);
 
       return onAppConfigChangedUnload();
     }
@@ -129,7 +131,6 @@ export default function App(props: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <title>with-typescript-material-ui</title>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

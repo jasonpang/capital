@@ -5,6 +5,8 @@ import { createWindow } from "./helpers";
 import json5 from "json5";
 import { ipcMain as ipc } from "electron-better-ipc";
 import { AppConfig } from "../renderer/lib/models";
+import path from "path";
+import fs, { fstat } from "fs";
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
@@ -20,7 +22,7 @@ const defaultAppConfig: any = {};
 
 const fileStore = new Store({
   name: "capital",
-  cwd: app.getPath("home"),
+  cwd: path.join(app.getPath("home"), "capital"),
   fileExtension: "conf",
   clearInvalidConfig: false,
   serialize: (value) => json5.stringify(value, null, "\t"),
@@ -29,9 +31,18 @@ const fileStore = new Store({
   defaults: defaultAppConfig,
 });
 
+const resourceCache = {};
+
 (async () => {
   ipc.answerRenderer("get-store", async () => {
     return fileStore.store;
+  });
+  ipc.answerRenderer("get-resource", async (path: string) => {
+    if (!resourceCache[path]) {
+      resourceCache[path] = fs.readFileSync(path, "utf8");
+    }
+
+    return resourceCache[path];
   });
 
   await app.whenReady();

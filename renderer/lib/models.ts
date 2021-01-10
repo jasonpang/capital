@@ -44,13 +44,31 @@ export interface TitlebarAppConfig {
   title: string;
 }
 
-export interface SidebarAppConfig {
+export interface LeftBarAvatarAppConfig {
+  border: Background<ReactText>;
+  nameColor:
+    | "inherit"
+    | "initial"
+    | "primary"
+    | "secondary"
+    | "textPrimary"
+    | "textSecondary"
+    | "error";
+  image: string;
+  name: string;
+  size: number;
+}
+
+export interface LeftBarAppConfig {
+  avatar: LeftBarAvatarAppConfig;
+  width: string;
   background: string;
 }
 
 export interface AppConfig {
+  resourcePath: string;
   titlebar: TitlebarAppConfig;
-  sidebar: SidebarAppConfig;
+  leftbar: LeftBarAppConfig;
 }
 
 export interface AppState extends State {
