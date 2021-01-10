@@ -1,0 +1,12 @@
+appId: capital
+productName: Capital
+copyright: Copyright © 2021 Jason Pang
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
