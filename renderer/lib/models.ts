@@ -45,27 +45,22 @@ export interface TitlebarAppConfig {
 }
 
 export interface LeftBarAvatarAppConfig {
-  border: Background<ReactText>;
-  nameColor:
-    | "inherit"
-    | "initial"
-    | "primary"
-    | "secondary"
-    | "textPrimary"
-    | "textSecondary"
-    | "error";
+  border: string;
   image: string;
   name: string;
   size: number;
 }
 
 export interface LeftBarAppConfig {
+  backdropFilter: string | PropsFunc<{}, string>;
   avatar: LeftBarAvatarAppConfig;
   width: string;
   background: string;
+  color: string;
 }
 
 export interface AppConfig {
+  background: any;
   resourcePath: string;
   titlebar: TitlebarAppConfig;
   leftbar: LeftBarAppConfig;

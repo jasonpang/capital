@@ -12,6 +12,9 @@ import { getSvgIcon } from "../lib/resource";
 import { useStore } from "../lib/store";
 
 export default function LeftPaneAvatar() {
+  const leftbarColor: string = useStore(
+    (state) => state.appConfig.leftbar.color
+  );
   const avatar: LeftBarAvatarAppConfig = useStore(
     (state) => state.appConfig.leftbar.avatar
   );
@@ -46,9 +49,10 @@ export default function LeftPaneAvatar() {
       <Box marginY={0.25} />
       <Typography
         style={{
-          color: avatar.nameColor,
+          color: leftbarColor,
           fontWeight: 250,
           letterSpacing: "0.5px",
+          // textShadow: "0px -2px 2px rgba(0, 0, 0, 0.4)",
         }}
       >
         {avatar.name}

@@ -28,15 +28,19 @@ export function getSvgIcon(filename, styles = {}) {
     if (!rawResource) {
       return <NotFoundIcon />;
     }
-    const rawIconEl: JSX.Element = parse(rawResource);
-    if (styles.size) {
-      styles.width = styles.size;
-      styles.height = styles.size;
+    let rawIconEl: JSX.Element = parse(rawResource);
+    if (Array.isArray(rawIconEl)) {
+      rawIconEl = rawIconEl.find((x) => x?.type === "svg");
     }
-    const svgIcon = cloneElement(rawIconEl, styles);
-
-    svgIconCache[filename] = svgIcon;
+    svgIconCache[filename] = rawIconEl;
   }
 
-  return svgIconCache[filename];
+  const cachedIcon = svgIconCache[filename];
+
+  if (styles.size) {
+    styles.width = styles.size;
+    styles.height = styles.size;
+    delete styles.size;
+  }
+  return cloneElement(cachedIcon, styles);
 }

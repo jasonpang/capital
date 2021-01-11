@@ -14,6 +14,7 @@ import React from "react";
 import { AppConfig } from "../lib/models";
 import { useStore } from "../lib/store";
 import LeftPaneAvatar from "./LeftPaneAvatar";
+import Nav from "./Nav";
 
 export default function LeftPane() {
   const appConfig: AppConfig = useStore((state) => state.appConfig);
@@ -34,6 +35,8 @@ export default function LeftPane() {
       drawerPaper: {
         width: appConfig.leftbar.width,
         background: appConfig.leftbar.background,
+        backdropFilter: appConfig.leftbar.backdropFilter,
+        boxShadow: appConfig.leftbar.boxShadow,
         top: appConfig.titlebar.height,
       },
       // necessary for content to be below app bar
@@ -66,7 +69,7 @@ export default function LeftPane() {
       >
         <LeftPaneAvatar />
       </Box>
-      <Divider />
+      <Nav />
     </Drawer>
   );
 }
