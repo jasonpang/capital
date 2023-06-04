@@ -22,6 +22,7 @@ export function getResource(filename) {
 }
 
 export function getSvgIcon(filename, styles = {}) {
+  return <NotFoundIcon />;
   if (!svgIconCache[filename]) {
     const rawResource = getResource(filename);
 

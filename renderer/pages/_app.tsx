@@ -62,6 +62,10 @@ export default function App(props: AppProps) {
 
   function setupIpc() {
     ipc.answerMain("notify-store-changed", async (updatedStore: AppConfig) => {
+      if (Object.keys(updatedStore).length === 0) {
+        return;
+      }
+
       setAppConfig(updatedStore);
     });
   }

@@ -18,13 +18,26 @@ if (isProd) {
   app.setPath("userData", `${app.getPath("userData")} (development)`);
 }
 
-const defaultAppConfig: any = {};
+const defaultAppConfig: any = {
+  titlebar: {
+    title: "Capital",
+    background: "#fff",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24)",
+    transform: "translateY(1px)",
+    height: "30px",
+    fontSize: "15px",
+    titleHorizontalAlignment: "left",
+  },
+  sidebar: {
+    background: "linear-gradient(#014CDB, #029BD8)",
+  },
+};
 
 const fileStore = new Store({
   name: "capital",
   cwd: path.join(app.getPath("home"), "capital"),
   fileExtension: "conf",
-  clearInvalidConfig: false,
+  clearInvalidConfig: true,
   serialize: (value) => json5.stringify(value, null, "\t"),
   deserialize: (value) => json5.parse(value),
   watch: true,

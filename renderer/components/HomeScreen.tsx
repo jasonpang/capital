@@ -13,7 +13,7 @@ export default function HomeScreen() {
   return (
     <Box id="home-screen-container">
       <LeftPane />
-      <Box position="fixed" left={0} right={0} top={0} bottom={0}>
+      {/* <Box position="fixed" left={0} right={0} top={0} bottom={0}>
         {getSvgIcon("winter-landscape.svg", {
           position: "absolute",
           top: 0,
@@ -23,7 +23,7 @@ export default function HomeScreen() {
           width: "100%",
           height: "100%",
         })}
-      </Box>
+      </Box> */}
       <Box marginLeft={appConfig.leftbar.width}>
         <Box marginX={5} marginY={6}>
           <BankCard />
